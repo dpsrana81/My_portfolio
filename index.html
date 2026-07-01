@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Cloud Engineer Portfolio</title>
+    <!-- Google Fonts for Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-main: #0b0f19;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent-primary: #6366f1; /* Indigo */
+            --accent-secondary: #06b6d4; /* Cyan */
+            --gradient-accent: linear-gradient(135deg, #6366f1, #06b6d4);
+            --gradient-shimmer: linear-gradient(90deg, #6366f1, #06b6d4, #6366f1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Premium Header & Line Animation */
+        header {
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-primary), var(--accent-secondary), transparent);
+            background-size: 200% 100%;
+            animation: borderGlow 4s linear infinite;
+        }
+
+        @keyframes borderGlow {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 200% 0%; }
+        }
+
+        header h2 {
+            font-size: 22px;
+            font-weight: 700;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+            transition: transform 0.3s ease;
+        }
+
+        header h2:hover {
+            transform: scale(1.02);
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-left: 28px;
+            font-size: 14px;
+            font-weight: 500;
+            position: relative;
+            padding: 6px 0;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--text-primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: var(--gradient-accent);
+            transform-origin: bottom right;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Hero & Core Shimmer Text */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            padding: 140px 8%;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: -5%;
+            width: 450px;
+            height: 450px;
+            background: rgba(99, 102, 241, 0.12);
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            animation: pulseGlow 8s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1) translate(0, 0); opacity: 0.8; }
+            100% { transform: scale(1.15) translate(20px, 20px); opacity: 1; }
+        }
+
+        .hero-text flex {
+            flex: 1.2;
+        }
+
+        .hero-text h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, #fff, #a5b4fc, #fff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShimmer 5s linear infinite;
+        }
+
+        @keyframes textShimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .hero-text h2 {
+            font-size: 24px;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .hero-text p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        /* Magnetic Glow Button */
+        .btn {
+            display: inline-block;
+            margin-top: 35px;
+            padding: 14px 34px;
+            background: var(--gradient-accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.25);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(99, 102, 241, 0.45);
+        }
+
+        /* Morphing Profile Image Container */
+        .hero-image {
+            flex: 0.8;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image-container {
+            position: relative;
+            width: 310px;
+            height: 310px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            background: var(--gradient-accent);
+            padding: 4px;
+            animation: morphingMesh 8s ease-in-out infinite;
+            transition: filter 0.4s ease;
+        }
+
+        .hero-image-container:hover img {
+            filter: brightness(1.1) contrast(1.05);
+        }
+
+        @keyframes morphingMesh {
+            0% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
+            50% { border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%; }
+            100% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
+        }
+
+        /* Structure Sections */
+        section {
+            padding: 100px 8%;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 0;
+            height: 3px;
+            background: var(--gradient-accent);
+            border-radius: 2px;
+            animation: titleExpand 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes titleExpand {
+            to { width: 45px; }
+        }
+
+        .about p {
+            color: var(--text-secondary);
+            line-height: 1.9;
+            font-size: 16px;
+            max-width: 800px;
+        }
+
+        /* Interactive Grid Layout Units */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 35px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        border-color 0.4s ease, 
+                        box-shadow 0.4s ease;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(6, 182, 212, 0.02) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(6, 182, 212, 0.35);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35), 
+                        0 0 40px rgba(6, 182, 212, 0.04);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .card:hover h3 {
+            color: #fff;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .card ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .card ul li {
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            transform: translateX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover ul li {
+            transform: translateX(4px);
+        }
+
+        .card ul li::before {
+            content: '→';
+            color: var(--accent-secondary);
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* Dynamic Engine Skill Bars */
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        .skill {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            border-radius: 16px;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+        }
+
+        .skill:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.4);
+        }
+
+        .skill h3 {
+            font-size: 16px;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .progress {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            height: 6px;
+            border-radius: 10px;
+            margin-top: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress div {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #6366f1, #06b6d4, #6366f1);
+            background-size: 200% 100%;
+            transition: filter 0.3s ease;
+        }
+
+        .skill:hover .progress div {
+            filter: brightness(1.2);
+            animation: streamData 1.5s linear infinite;
+        }
+
+        @keyframes streamData {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 200% 0%; }
+        }
+
+        /* Micro-Interactive Contact Anchors */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .contact-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: scale(1.03) translateY(-2px);
+            border-color: rgba(99, 102, 241, 0.35);
+            box-shadow: 0 12px 28px rgba(99, 102, 241, 0.06);
+        }
+
+        .contact-item span {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+
+        .contact-item a, .contact-item p {
+            font-size: 16px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-secondary);
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 30px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Layout Media Optimization maps */
+        @media(max-width: 900px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 80px 8%;
+            }
+            .hero-text h1 {
+                font-size: 40px;
+            }
+            .hero-text p {
+                margin: 0 auto;
+            }
+            header {
+                padding: 20px 5%;
+            }
+            nav {
+                display: flex;
+                gap: 15px;
+            }
+            nav a {
+                margin-left: 0;
+                font-size: 13px;
+            }
+        }
+        
+        @media(max-width: 600px) {
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>Dev Partap Singh</h2>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Hi, I'm Dev Partap Singh</h1>
+            <h2>B.Tech Information Technology Student</h2>
+            <p>
+                I am an aspiring Cloud Computing enthusiast currently pursuing my Bachelor of Technology at JMIT College. I specialize in building foundational knowledge around modern web ecosystems, Linux deployment, and automated infrastructure frameworks.
+            </p>
+            <a href="#contact" class="btn">Let's Connect</a>
+        </div>
+        <div class="hero-image">
+            <div class="hero-image-container">
+                <img src="https://via.placeholder.com/320" alt="Dev Partap Singh">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2 class="title">About Me</h2>
+        <p>
+            Hello! My name is <strong>Dev Partap Singh</strong>. I am deeply passionate about engineering cloud infrastructures that are scalable, secure, and highly efficient. Beyond theory, my goals center around acquiring hands-on mastery over AWS ecosystem architectures, containerized environments, and continuous integration workflows. I'm actively looking for growth-driven environments where I can apply my foundational technical skills.
+        </p>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2 class="title">Education</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>Bachelor of Technology (B.Tech)</h3>
+                <p style="color: var(--accent-secondary); margin-bottom: 10px; font-weight: 500;">Information Technology</p>
+                <p style="margin-bottom: 5px;"><strong>Institution:</strong> JMIT College</p>
+                <p style="margin-bottom: 15px;"><strong>Status:</strong> Currently Pursuing</p>
+                <p>Core focus areas include Database Management Systems (DBMS), Core Networking Concepts, Linux Operating Systems, and Object-Oriented Software Architectures.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="title">Technical Core</h2>
+        <div class="skills">
+            <div class="skill">
+                <h3>Cloud Computing <span>65%</span></h3>
+                <div class="progress"><div style="width:65%"></div></div>
+            </div>
+            <div class="skill">
+                <h3>Linux Administration <span>75%</span></h3>
+                <div class="progress"><div style="width:75%"></div></div>
+            </div>
+            <div class="skill">
+                <h3>Git & GitHub <span>70%</span></h3>
+                <div class="progress"><div style="width:70%"></div></div>
+            </div>
+            <div class="skill">
+                <h3>Networking Basics <span>75%</span></h3>
+                <div class="progress"><div style="width:75%"></div></div>
+            </div>
+            <div class="skill">
+                <h3>JavaScript <span>70%</span></h3>
+                <div class="progress"><div style="width:70%"></div></div>
+            </div>
+            <div class="skill">
+                <h3>HTML5 & CSS3 <span>90%</span></h3>
+                <div class="progress"><div style="width:90%"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="title">Featured Initiatives</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>Premium Portfolio Website</h3>
+                <p>Designed and configured a highly responsive modern web presence to structurally outline engineering credentials, project roadmaps, and modular skills.</p>
+            </div>
+            <div class="card">
+                <h3>Cloud Environment Frameworks</h3>
+                <p>Configured test-bed lab architectures involving virtualization nodes, remote secure Linux terminal provisioning, storage resource allocation, and basic networking maps.</p>
+            </div>
+            <div class="card">
+                <h3>Target Architecture Roadmap</h3>
+                <p>Actively prototyping upcoming pipeline scripts using infrastructure tools like Terraform, system Dockerization, and simple automated AWS workflows.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <h2 class="title">Focus Domains</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>Active Specializations</h3>
+                <ul>
+                    <li>AWS Core Infrastructure Architecture</li>
+                    <li>Unix Engine Administration & Scripting</li>
+                    <li>Git Version Management Pipelines</li>
+                    <li>Docker Ecosystem Implementations</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Engineering Objectives</h3>
+                <p>To cultivate technical breadth as a Cloud/DevOps Professional capable of optimizing microservices deployments across globally distributed Multi-Cloud topologies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="title">Get In Touch</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <span>Email</span>
+                <a href="mailto:devpartap.singh@example.com">devpartap.singh@example.com</a>
+            </div>
+            <div class="contact-item">
+                <span>Phone</span>
+                <a href="tel:+919876543210">+91 98765-43210</a>
+            </div>
+            <div class="contact-item">
+                <span>Location</span>
+                <p>Haryana, India</p>
+            </div>
+            <div class="contact-item">
+                <span>LinkedIn</span>
+                <a href="https://linkedin.com/in/dev-partap-singh" target="_blank">linkedin.com/in/dev-partap-singh</a>
+            </div>
+            <div class="contact-item">
+                <span>GitHub</span>
+                <a href="https://github.com/devpartap" target="_blank">github.com/devpartap</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>© 2026 Dev Partap Singh | Designed for High Performance</p>
+</footer>
+
+</body>
+</html>
